@@ -5,8 +5,7 @@
 
 using namespace std;
 
-vector<char> barajar(queue<char> X, queue<char> Y);
-vector<char> barajarAux(queue<char> X, queue<char> Y, vector<char> Z);
+vector<char> barajarRecursivo(queue<char> X, queue<char> Y, vector<char> Z);
 
 int main(){
     vector<char> Z;
@@ -25,19 +24,14 @@ int main(){
     Y.push('R');
     Y.push('O');
 
-    Z = barajar(X, Y);
+    Z = barajarRecursivo(X, Y, Z);
     for(vector<char>::iterator it = Z.begin(); it != Z.end(); ++it){
       cout << *it;
     }
     cout << '\n';
 }
 
-vector<char> barajar(queue<char> X, queue<char> Y){
-    vector<char> Z;
-    return barajarAux(X, Y, Z);
-}
-
-vector<char> barajarAux(queue<char> X, queue<char> Y, vector<char> Z){
+vector<char> barajarRecursivo(queue<char> X, queue<char> Y, vector<char> Z){
     if(X.empty() && Y.empty()){
         return Z;
     }
@@ -57,5 +51,5 @@ vector<char> barajarAux(queue<char> X, queue<char> Y, vector<char> Z){
             //cout << "Popped from Y" << endl;
         }
     }
-    return barajarAux(X, Y, Z); 
+    return barajarRecursivo(X, Y, Z); 
 }
